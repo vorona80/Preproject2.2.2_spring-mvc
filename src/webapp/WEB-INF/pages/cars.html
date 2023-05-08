@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+</head>
+<body>
+<div th:each="auto : ${result}">
+    <a th:text="${auto.getModel}"></a>
+    <a th:text="${auto.getSeries()}"></a>
+    <a th:text="${auto.getColor()}"></a>
+</div>
+<!--The list cars: <p th:text="${result}"></p>-->
+</body>
+</html>
