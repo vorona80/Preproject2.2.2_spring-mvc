@@ -10,15 +10,14 @@ import web.service.CarsService;
 @Controller
 @RequestMapping("/cars")
 public class CarsController {
-    @Autowired
     private CarsService carsService;
+    @Autowired
+    public CarsController(CarsService carsService) {
+        this.carsService = carsService;
+    }
     @GetMapping("")
-    public String returnCar(@RequestParam(value = "count",required = false) String count, Model model) {
-        if (count == null || Integer.parseInt(count) >= 5) {
-            model.addAttribute("result", carsService.retCars());
-        } else {
-            model.addAttribute("result", carsService.countCars(Integer.parseInt(count)));
-        }
+    public String returnCar(@RequestParam(value = "count",defaultValue = "5"/*required = false*/) String count, Model model) {
+        model.addAttribute("result", carsService.countCars(Integer.parseInt(count)));
         return "cars";
     }
 }
